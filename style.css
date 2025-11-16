@@ -1,0 +1,107 @@
+:root{
+  --bg-light: #f3f6fb;
+  --card-light: #ffffff;
+  --text-light: #122;
+  --accent: linear-gradient(90deg,#00c6ff,#0072ff);
+
+  --bg-dark: #0f1115;
+  --card-dark: #141518;
+  --text-dark: #eef2f7;
+}
+
+/* default theme = light */
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* common styles */
+*{ box-sizing:border-box; margin:0; padding:0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(4px);
+}
+body.dark header { background: rgba(255,255,255,0.03); }
+
+.brand { display:flex; align-items:center; gap:18px; }
+.brand h1 { font-size:22px; letter-spacing:1px; margin:0; }
+.small-clock { font-size:14px; color:gray; }
+
+/* theme toggle */
+.controls-top { }
+#themeToggle{ padding:8px 10px; border-radius:8px; border:none; cursor:pointer; }
+/* stopwatch panel moved bottom-right */
+#stopwatchPanel{
+  position:fixed;
+  bottom:18px;  /* moved down */
+  right:18px;
+  background:gold;
+  padding:10px 12px;
+  border-radius:10px;
+  box-shadow: 0 8px 22px rgba(2, 4, 23, 0.08);
+  text-align:center;
+}
+body.dark #stopwatchPanel { background: var(--card-dark); box-shadow: 0 8px 22px rgba(255,255,255,0.03); }
+#sessionTime { font-weight:700; font-size:16px; margin-bottom:8px; }
+.btn-row button { padding:7px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+
+
+/* main clock center */
+main { display:flex; flex-direction:column; align-items:center; gap:24px; padding:30px 16px 60px; }
+.center-clock { text-align:center; margin-top:46px; }
+#mainTime { font-size:48px; font-weight:800; background: var(--accent); -webkit-background-clip:text; color:transparent; }
+#todayDate { margin-top:8px; color:gray; }
+
+/* dashboard */
+#dashboard { width:90%; max-width:980px; margin-top:6px; display:grid; grid-template-columns: 1fr 300px; gap:18px; }
+.card { background:var(--card-light); padding:16px; border-radius:10px; box-shadow: 0 12px 30px rgba(2,6,23,0.06); }
+body.dark .card { background: var(--card-dark); box-shadow: 0 12px 30px rgba(255,255,255,0.02); color:var(--text-dark); }
+.card.small { display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+
+button#exportCSV, button#resetData { padding:10px 12px; border-radius:8px; border:none; cursor:pointer; width:100%; font-weight:700; }
+button#resetData { background:#ff6b6b; color:#fff; }
+button#exportCSV { background:#00bfa6; color:#fff; }
+
+/* small note */
+.note { font-size:12px; color:gray; margin-top:6px; }
+
+/* responsive */
+@media (max-width:880px){
+  #dashboard { grid-template-columns: 1fr; }
+  #mainTime { font-size:36px; }
+  #stopwatchPanel { right:10px; top:12px; }
+  header { padding:10px; }
+}
+
+/* Alarm box corner position */
+#alarmSection {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 350px;
+  z-index: 999;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#alarmStatus.ringing {
+  color: red;
+  font-weight: bold;
+  animation: blink 0.8s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.2; }
+}
