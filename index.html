@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuantTime</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light">
+  <header>
+    <div class="brand">
+      <h1>QuantTime</h1>
+      <div id="localClock" class="small-clock">00:00:00</div>
+    </div>
+
+    <div class="controls-top">
+      <button id="themeToggle">Switch Theme</button>
+    </div>
+  </header>
+
+  <!-- Stopwatch top-right -->
+  <div id="stopwatchPanel">
+    <div id="sessionTime">00:00:00</div>
+    <div class="btn-row">
+      <button id="toggleStopwatch">Start</button>
+    </div>
+  </div>
+  <section id="alarmPanel" class="card small">
+  <h3>Alarm</h3>
+  
+  <label for="alarmTime">Set Time</label>
+  <input type="time" id="alarmTime"/>
+
+  <label for="alarmSound">Select Ringtone</label>
+  <input type="file" id="alarmSound" accept="audio/*" />
+
+  <button id="setAlarmBtn">Set Alarm</button>
+  <button id="clearAlarmBtn">Clear Alarm</button>
+
+  <p class="note" id="alarmStatus">No alarm set.</p>
+
+  <!-- Default alarm tone -->
+  <audio id="defaultAlarm">
+    <source src="alarm.mp3" type="audio/mp3" />
+  </audio>
+</section>
+
+  <!-- Main -->
+  <main>
+    <section class="center-clock">
+      <div id="mainTime">00:00:00 AM</div>
+      <div id="todayDate"></div>
+    </section>
+
+    <section id="dashboard">
+      <div class="card">
+        <h3>Weekly Usage (minutes)</h3>
+        <canvas id="weeklyChart"></canvas>
+      </div>
+
+      <div class="card small">
+        <h3>Actions</h3>
+        <button id="exportCSV">Export CSV</button>
+        <button id="resetData">Reset Data</button>
+        <p class="note">Data stored locally in browser (localStorage)</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="digi-clock.js"></script>
+</body>
+</html>
